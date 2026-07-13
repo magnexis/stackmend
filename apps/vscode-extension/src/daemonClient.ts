@@ -114,7 +114,9 @@ export class StackMendDaemonClient {
   }
 
   async analyze(projectPath: string): Promise<AnalyzeResponse> {
-    return this.request<AnalyzeResponse>("POST", "/analyze", { projectPath });
+    return this.request<AnalyzeResponse>("POST", "/analyze", {
+      projectPath: normalizeProjectPath(projectPath),
+    });
   }
 
   async feedback(payload: FeedbackRequest): Promise<FeedbackResponse> {
@@ -168,7 +170,7 @@ async function startDaemonProcess(): Promise<void> {
     stdio: "ignore",
     cwd: process.cwd(),
     windowsHide: true,
-    env: { ...process.env },
+    env: createDaemonEnvironment(),
   });
   child.unref();
 }
@@ -206,27 +208,95 @@ async function rawRequest<T>(
   }
 }
 
-function resolveDaemonEntry(): string {
-  const override = process.env.STACKMEND_DAEMON_ENTRY;
-  if (override && fs.existsSync(override)) {
-    return override;
+function normalizeProjectPath(value: string): string {
+  if (typeof value !== "string" || value.trim().length === 0 || value.includes("\0")) {
+    throw new Error("Project path must be a non-empty string.");
   }
+  if (containsTraversalSegment(value)) {
+    throw new Error("Project path must not contain traversal segments.");
+  }
+  const resolved = path.resolve(value);
+  const stats = fs.statSync(resolved);
+  if (!stats.isDirectory()) {
+    throw new Error("Project path must reference an existing directory.");
+  }
+  return fs.realpathSync(resolved);
+}
 
+function containsTraversalSegment(value: string): boolean {
+  return value.split(/[\\/]+/).includes("..");
+}
+
+function createDaemonEnvironment(): NodeJS.ProcessEnv {
+  const env = { ...process.env };
+  for (const key of ["NODE_OPTIONS", "NODE_PATH", "npm_config_node_options"]) {
+    delete env[key];
+  }
+  return env;
+}
+
+function resolveDaemonEntry(): string {
+  const extensionRoot = findPackageRoot(__dirname);
+  const monorepoRoot = extensionRoot ? path.resolve(extensionRoot, "..", "..") : undefined;
   const candidates = [
-    path.resolve(process.cwd(), "apps", "daemon", "dist", "apps", "daemon", "src", "index.js"),
-    path.resolve(process.cwd(), "dist", "apps", "daemon", "src", "index.js"),
+    ...(monorepoRoot ? [path.join(monorepoRoot, "apps", "daemon", "dist", "apps", "daemon", "src", "index.js")] : []),
+    ...(extensionRoot ? [path.resolve(extensionRoot, "dist", "apps", "daemon", "src", "index.js")] : []),
     path.resolve(STACKMEND_HOME, "bin", "stackmend-daemon.js"),
   ];
+  const trustedRoots = [monorepoRoot, extensionRoot, path.resolve(STACKMEND_HOME, "bin")].filter(
+    (value): value is string => Boolean(value),
+  );
+
+  const override = process.env.STACKMEND_DAEMON_ENTRY;
+  if (override) {
+    const resolvedOverride = validateDaemonEntry(override, trustedRoots);
+    if (!resolvedOverride) {
+      throw new Error("STACKMEND_DAEMON_ENTRY must point to a trusted daemon JavaScript file.");
+    }
+    return resolvedOverride;
+  }
 
   for (const candidate of candidates) {
-    if (fs.existsSync(candidate)) {
-      return candidate;
+    const resolved = validateDaemonEntry(candidate, trustedRoots);
+    if (resolved) {
+      return resolved;
     }
   }
 
   throw new Error(
     `Unable to locate STACKMEND daemon entry. Set STACKMEND_DAEMON_ENTRY or install the daemon runtime.`,
   );
+}
+
+function validateDaemonEntry(candidate: string, trustedRoots: string[]): string | null {
+  if (!path.isAbsolute(candidate) || candidate.includes("\0") || !/\.(?:cjs|mjs|js)$/i.test(candidate)) {
+    return null;
+  }
+  try {
+    const realCandidate = fs.realpathSync(candidate);
+    if (!fs.statSync(realCandidate).isFile()) {
+      return null;
+    }
+    return trustedRoots.some((root) => isWithinDirectory(realCandidate, root)) ? realCandidate : null;
+  } catch {
+    return null;
+  }
+}
+
+function findPackageRoot(start: string): string | null {
+  let current = start;
+  while (current !== path.dirname(current)) {
+    if (fs.existsSync(path.join(current, "package.json"))) {
+      return current;
+    }
+    current = path.dirname(current);
+  }
+  return null;
+}
+
+function isWithinDirectory(candidate: string, root: string): boolean {
+  const relative = path.relative(fs.existsSync(root) ? fs.realpathSync(root) : path.resolve(root), candidate);
+  return relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative));
 }
 
 function sleep(ms: number): Promise<void> {
