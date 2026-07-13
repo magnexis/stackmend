@@ -5,6 +5,10 @@
   "version": "0.1.2",
   "publisher": "magnificent-language",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magnexis/stackmend.git"
+  },
   "engines": {
     "vscode": "^1.90.0"
   },
