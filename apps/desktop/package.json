@@ -1,7 +1,7 @@
 {
   "name": "stackmend-desktop",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.2",
+  "private": false,
   "type": "module",
   "main": "dist/apps/desktop/src/main.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "start": "npm run build && electron ."
   },
   "dependencies": {
-    "@stackmend/daemon-client": "0.1.0"
+    "@stackmend/daemon-client": "0.1.2"
   },
   "devDependencies": {
     "electron": "^31.7.7"

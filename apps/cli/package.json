@@ -1,6 +1,6 @@
 {
   "name": "@stackmend/cli",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "type": "module",
   "bin": {
     "stackmend": "dist/apps/cli/src/index.js"
@@ -12,6 +12,6 @@
     "clean": "if exist dist rmdir /s /q dist"
   },
   "dependencies": {
-    "@stackmend/daemon-client": "0.1.0"
+    "@stackmend/daemon-client": "0.1.2"
   }
 }

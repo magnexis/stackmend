@@ -95,7 +95,7 @@
     "package:vsix": "node ./scripts/package-vsix.mjs"
   },
   "dependencies": {
-    "@stackmend/daemon-client": "0.1.0",
+    "@stackmend/daemon-client": "0.1.2",
     "yaml": "^2.5.0"
   },
   "devDependencies": {

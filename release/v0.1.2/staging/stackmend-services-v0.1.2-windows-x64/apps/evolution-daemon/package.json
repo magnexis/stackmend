@@ -1,6 +1,6 @@
 {
   "name": "@stackmend/evolution-daemon",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "type": "module",
   "bin": {
     "stackmend-evolution-daemon": "dist/apps/evolution-daemon/src/index.js"

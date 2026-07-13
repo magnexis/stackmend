@@ -1,6 +1,6 @@
 {
   "name": "@stackmend/delta-reporter",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "type": "module",
   "main": "dist/packages/delta-reporter/src/index.js",
   "types": "dist/packages/delta-reporter/src/index.d.ts",
@@ -9,6 +9,6 @@
     "clean": "if exist dist rmdir /s /q dist"
   },
   "dependencies": {
-    "@stackmend/shared": "0.1.0"
+    "@stackmend/shared": "0.1.2"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@stackmend/daemon",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "type": "module",
   "bin": {
     "stackmend-daemon": "dist/apps/daemon/src/index.js"
@@ -12,7 +12,7 @@
     "clean": "if exist dist rmdir /s /q dist"
   },
   "dependencies": {
-    "@stackmend/fracture-engine": "0.1.0",
-    "@stackmend/protocol": "0.1.0"
+    "@stackmend/fracture-engine": "0.1.2",
+    "@stackmend/protocol": "0.1.2"
   }
 }

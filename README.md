@@ -4,7 +4,6 @@
 
 <p align="center">
   <a href="#overview"><img src="https://img.shields.io/badge/status-active%20prototype-57E3B5?style=plastic&labelColor=0B1723&color=57E3B5" alt="Status: active prototype"></a>
-  <a href="#phase-8-direction"><img src="https://img.shields.io/badge/phase-8%20interaction--driven-163247?style=plastic&labelColor=0B1723&color=163247" alt="Phase 8 interaction-driven"></a>
   <a href="#local-first"><img src="https://img.shields.io/badge/privacy-local--first-A9F5DE?style=plastic&labelColor=0B1723&color=A9F5DE" alt="Privacy: local first"></a>
   <a href="#workspace-layout"><img src="https://img.shields.io/badge/monorepo-typescript-78DCC0?style=plastic&labelColor=0B1723&color=78DCC0" alt="Monorepo TypeScript"></a>
 </p>

@@ -1,7 +1,7 @@
 {
   "product": "STACKMEND",
-  "version": "0.1.1",
-  "generatedAt": "2026-07-13T18:54:58.395Z",
+  "version": "0.1.2",
+  "generatedAt": "2026-07-13T19:02:11.795Z",
   "assets": [
     {
       "name": "stackmend-0.1.2.vsix",
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "name": "stackmend-cli-v0.1.1-windows-x64.zip",
+      "name": "stackmend-cli-v0.1.2-windows-x64.zip",
       "type": "zip",
       "target": "cli",
       "requirements": [
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "name": "stackmend-desktop-v0.1.1-windows-x64.zip",
+      "name": "stackmend-desktop-v0.1.2-windows-x64.zip",
       "type": "zip",
       "target": "desktop",
       "requirements": [
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "name": "stackmend-services-v0.1.1-windows-x64.zip",
+      "name": "stackmend-services-v0.1.2-windows-x64.zip",
       "type": "zip",
       "target": "services",
       "requirements": [

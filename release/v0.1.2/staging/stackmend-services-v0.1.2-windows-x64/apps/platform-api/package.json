@@ -1,6 +1,6 @@
 {
   "name": "@stackmend/platform-api",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "type": "module",
   "bin": {
     "stackmend-platform-api": "dist/apps/platform-api/src/index.js"

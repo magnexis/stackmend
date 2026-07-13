@@ -1,6 +1,6 @@
 {
   "name": "@stackmend/fracture-engine",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "type": "module",
   "main": "dist/packages/fracture-engine/src/index.js",
   "types": "dist/packages/fracture-engine/src/index.d.ts",
@@ -9,20 +9,20 @@
     "clean": "if exist dist rmdir /s /q dist"
   },
   "dependencies": {
-    "@stackmend/environment-analyzer": "0.1.0",
-    "@stackmend/claim-trial": "0.1.0",
-    "@stackmend/compliance-engine": "0.1.0",
-    "@stackmend/delta-reporter": "0.1.0",
-    "@stackmend/event-capture": "0.1.0",
-    "@stackmend/learning-engine": "0.1.0",
-    "@stackmend/memory-engine": "0.1.0",
-    "@stackmend/outcome-observer": "0.1.0",
-    "@stackmend/outcome-learner": "0.1.0",
-    "@stackmend/prediction-recorder": "0.1.0",
-    "@stackmend/repair-planner": "0.1.0",
-    "@stackmend/repository-intelligence": "0.1.0",
-    "@stackmend/route-analyzer": "0.1.0",
-    "@stackmend/shared": "0.1.0",
-    "@stackmend/trust-scope-engine": "0.1.0"
+    "@stackmend/environment-analyzer": "0.1.2",
+    "@stackmend/claim-trial": "0.1.2",
+    "@stackmend/compliance-engine": "0.1.2",
+    "@stackmend/delta-reporter": "0.1.2",
+    "@stackmend/event-capture": "0.1.2",
+    "@stackmend/learning-engine": "0.1.2",
+    "@stackmend/memory-engine": "0.1.2",
+    "@stackmend/outcome-observer": "0.1.2",
+    "@stackmend/outcome-learner": "0.1.2",
+    "@stackmend/prediction-recorder": "0.1.2",
+    "@stackmend/repair-planner": "0.1.2",
+    "@stackmend/repository-intelligence": "0.1.2",
+    "@stackmend/route-analyzer": "0.1.2",
+    "@stackmend/shared": "0.1.2",
+    "@stackmend/trust-scope-engine": "0.1.2"
   }
 }

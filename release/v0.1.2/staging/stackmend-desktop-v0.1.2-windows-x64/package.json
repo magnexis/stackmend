@@ -1,6 +1,6 @@
 {
   "name": "stackmend-desktop-bundle",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "type": "module",
   "main": "apps/desktop/dist/apps/desktop/src/main.js"
