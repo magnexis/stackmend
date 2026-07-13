@@ -39,6 +39,8 @@ const MAX_LOG_BYTES = 256 * 1024;
 const MAX_LOG_ARCHIVES = 3;
 const HEARTBEAT_INTERVAL_MS = 2000;
 const STALE_HEARTBEAT_MS = 15000;
+const MAX_REQUEST_BODY_BYTES = 1024 * 1024;
+
 
 type DaemonState =
   | "starting"
@@ -103,35 +105,36 @@ async function main(): Promise<void> {
       }
 
       if (req.method === "POST" && url.pathname === "/analyze") {
-        state.current = "busy";
         const body = (await readJson(req)) as AnalyzeRequest;
-        state.activeProjects.add(body.projectPath);
-        const summary = scanProject(body.projectPath);
-        state.current = "ready";
-        return respondOk<AnalyzeResponse>(res, { summary });
+        const projectPath = validateProjectPath(body.projectPath);
+        return withActiveProject(projectPath, () => {
+          const summary = scanProject(projectPath);
+          return respondOk<AnalyzeResponse>(res, { summary });
+        });
       }
 
       if (req.method === "POST" && url.pathname === "/fractures") {
-        state.current = "busy";
         const body = (await readJson(req)) as FracturesRequest;
-        state.activeProjects.add(body.projectPath);
-        const summary = scanProject(body.projectPath);
-        state.current = "ready";
-        const filtered = body.severity
-          ? summary.fractures.filter((fracture) => fracture.severity === body.severity)
-          : summary.fractures;
-        return respondOk<FracturesResponse>(res, {
-          summary: { targetPath: summary.targetPath, fractures: filtered },
+        const projectPath = validateProjectPath(body.projectPath);
+        return withActiveProject(projectPath, () => {
+          const summary = scanProject(projectPath);
+          const filtered = body.severity
+            ? summary.fractures.filter((fracture) => fracture.severity === body.severity)
+            : summary.fractures;
+          return respondOk<FracturesResponse>(res, {
+            summary: { targetPath: summary.targetPath, fractures: filtered },
+          });
         });
       }
 
       if (req.method === "POST" && url.pathname === "/feedback") {
         state.current = "busy";
         const body = (await readJson(req)) as FeedbackRequest;
+        const payload = validateFeedbackPayload(body.payload);
         const result =
           body.kind === "repair_feedback"
-            ? recordRepairFeedback(body.payload as RepairFeedbackInput)
-            : recordDiagnosisCorrection(body.payload as DiagnosisCorrectionInput);
+            ? recordRepairFeedback(payload as RepairFeedbackInput)
+            : recordDiagnosisCorrection(payload as DiagnosisCorrectionInput);
         state.current = "ready";
         return respondOk<FeedbackResponse>(res, {
           interactionId: result.interactionRecord.id,
@@ -143,7 +146,7 @@ async function main(): Promise<void> {
       if (req.method === "POST" && url.pathname === "/stop") {
         state.current = "stopping";
         respondOk(res, { stopped: true });
-        setTimeout(() => shutdown(server), 100);
+        setTimeout(() => shutdown(server, heartbeatTimer), 100).unref();
         return;
       }
 
@@ -270,10 +273,61 @@ function respond<T>(res: http.ServerResponse, statusCode: number, body: StackMen
 
 async function readJson(req: http.IncomingMessage): Promise<unknown> {
   const chunks: Buffer[] = [];
+  let totalBytes = 0;
   for await (const chunk of req) {
-    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+    const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+    totalBytes += buffer.byteLength;
+    if (totalBytes > MAX_REQUEST_BODY_BYTES) {
+      throw new Error(`Request body exceeds ${MAX_REQUEST_BODY_BYTES} bytes.`);
+    }
+    chunks.push(buffer);
   }
-  return chunks.length === 0 ? {} : JSON.parse(Buffer.concat(chunks).toString("utf8"));
+  return chunks.length === 0 ? {} : JSON.parse(Buffer.concat(chunks, totalBytes).toString("utf8"));
+}
+
+function validateProjectPath(value: unknown): string {
+  if (typeof value !== "string" || value.trim().length === 0 || value.includes("\0")) {
+    throw new Error("Project path must be a non-empty string.");
+  }
+  if (containsTraversalSegment(value)) {
+    throw new Error("Project path must not contain traversal segments.");
+  }
+  if (!path.isAbsolute(value)) {
+    throw new Error("Project path must be absolute.");
+  }
+
+  const resolved = path.resolve(value);
+  const stats = fs.statSync(resolved);
+  if (!stats.isDirectory()) {
+    throw new Error("Project path must reference an existing directory.");
+  }
+  return fs.realpathSync(resolved);
+}
+
+function validateFeedbackPayload(payload: unknown): RepairFeedbackInput | DiagnosisCorrectionInput {
+  if (!payload || typeof payload !== "object") {
+    throw new Error("Feedback payload must be an object.");
+  }
+  const candidate = payload as { targetPath?: unknown };
+  return {
+    ...(payload as RepairFeedbackInput | DiagnosisCorrectionInput),
+    targetPath: validateProjectPath(candidate.targetPath),
+  };
+}
+
+function withActiveProject(projectPath: string, action: () => void): void {
+  state.current = "busy";
+  state.activeProjects.add(projectPath);
+  try {
+    action();
+  } finally {
+    state.activeProjects.delete(projectPath);
+    state.current = "ready";
+  }
+}
+
+function containsTraversalSegment(value: string): boolean {
+  return value.split(/[\\/]+/).includes("..");
 }
 
 function requestId(): string {
