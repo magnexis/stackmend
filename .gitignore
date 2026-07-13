@@ -13,6 +13,11 @@ coverage/
 apps/vscode-extension/node_modules/
 apps/vscode-extension/*.vsix
 
+# Local daemon home sandboxes
+.stackmend-home/
+.stackmend-home-foreground/
+.stackmend-home-test/
+
 # OS and editor noise
 .DS_Store
 Thumbs.db
