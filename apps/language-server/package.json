@@ -1,0 +1,14 @@
+{
+  "name": "@stackmend/language-server",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "stackmend-language-server": "dist/apps/language-server/src/index.js"
+  },
+  "main": "dist/apps/language-server/src/index.js",
+  "types": "dist/apps/language-server/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "if exist dist rmdir /s /q dist"
+  }
+}

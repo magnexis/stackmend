@@ -1,0 +1,89 @@
+[
+  {
+    "id": "source:README-md",
+    "sourcePath": "README.md",
+    "sourceType": "repository_readme",
+    "publisher": "local_repository",
+    "tier": "canonical",
+    "status": "approved",
+    "trustScore": 0.99,
+    "authorityScore": 0.94,
+    "freshnessScore": 0.99,
+    "canonical": true,
+    "automatedAccessAllowed": true,
+    "trainingUseAllowed": true,
+    "attributionRequired": false,
+    "evidenceCount": 1,
+    "tags": [
+      "documentation",
+      "local-first",
+      "inspectable"
+    ]
+  },
+  {
+    "id": "source:package-json",
+    "sourcePath": "package.json",
+    "sourceType": "package_manifest",
+    "publisher": "local_repository",
+    "tier": "canonical",
+    "status": "approved",
+    "trustScore": 0.99,
+    "authorityScore": 0.94,
+    "freshnessScore": 0.99,
+    "canonical": true,
+    "automatedAccessAllowed": true,
+    "trainingUseAllowed": true,
+    "attributionRequired": false,
+    "evidenceCount": 0,
+    "tags": [
+      "package",
+      "build",
+      "local-first",
+      "inspectable"
+    ]
+  },
+  {
+    "id": "source:tsconfig-base-json",
+    "sourcePath": "tsconfig.base.json",
+    "sourceType": "typescript_config",
+    "publisher": "local_repository",
+    "tier": "canonical",
+    "status": "approved",
+    "trustScore": 0.99,
+    "authorityScore": 0.94,
+    "freshnessScore": 0.99,
+    "canonical": true,
+    "automatedAccessAllowed": true,
+    "trainingUseAllowed": true,
+    "attributionRequired": false,
+    "evidenceCount": 2,
+    "tags": [
+      "typescript",
+      "compiler",
+      "local-first",
+      "inspectable"
+    ]
+  },
+  {
+    "id": "source:-stackmend-config-yaml",
+    "sourcePath": ".stackmend/config.yaml",
+    "sourceType": "stackmend_config",
+    "publisher": "local_repository",
+    "tier": "canonical",
+    "status": "approved",
+    "trustScore": 0.99,
+    "authorityScore": 0.97,
+    "freshnessScore": 0.99,
+    "canonical": true,
+    "automatedAccessAllowed": true,
+    "trainingUseAllowed": true,
+    "attributionRequired": false,
+    "evidenceCount": 5,
+    "tags": [
+      "stackmend",
+      "policy",
+      "local-first",
+      "inspectable"
+    ]
+  }
+]

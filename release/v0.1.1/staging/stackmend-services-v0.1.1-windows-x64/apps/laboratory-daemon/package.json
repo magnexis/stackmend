@@ -1,0 +1,14 @@
+{
+  "name": "@stackmend/laboratory-daemon",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "stackmend-laboratory-daemon": "dist/apps/laboratory-daemon/src/index.js"
+  },
+  "main": "dist/apps/laboratory-daemon/src/index.js",
+  "types": "dist/apps/laboratory-daemon/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "if exist dist rmdir /s /q dist"
+  }
+}

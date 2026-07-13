@@ -1,0 +1,14 @@
+{
+  "name": "@stackmend/evolution-daemon",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "stackmend-evolution-daemon": "dist/apps/evolution-daemon/src/index.js"
+  },
+  "main": "dist/apps/evolution-daemon/src/index.js",
+  "types": "dist/apps/evolution-daemon/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "if exist dist rmdir /s /q dist"
+  }
+}

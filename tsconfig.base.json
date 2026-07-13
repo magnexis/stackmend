@@ -1,0 +1,71 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "baseUrl": ".",
+    "paths": {
+      "@stackmend/shared": [
+        "packages/shared/src/index.ts"
+      ],
+      "@stackmend/environment-analyzer": [
+        "packages/environment-analyzer/src/index.ts"
+      ],
+      "@stackmend/protocol": [
+        "packages/protocol/src/index.ts"
+      ],
+      "@stackmend/daemon-client": [
+        "packages/daemon-client/src/index.ts"
+      ],
+      "@stackmend/fracture-engine": [
+        "packages/fracture-engine/src/index.ts"
+      ],
+      "@stackmend/repository-intelligence": [
+        "packages/repository-intelligence/src/index.ts"
+      ],
+      "@stackmend/route-analyzer": [
+        "packages/route-analyzer/src/index.ts"
+      ],
+      "@stackmend/learning-engine": [
+        "packages/learning-engine/src/index.ts"
+      ],
+      "@stackmend/memory-engine": [
+        "packages/memory-engine/src/index.ts"
+      ],
+      "@stackmend/compliance-engine": [
+        "packages/compliance-engine/src/index.ts"
+      ],
+      "@stackmend/claim-trial": [
+        "packages/claim-trial/src/index.ts"
+      ],
+      "@stackmend/event-capture": [
+        "packages/event-capture/src/index.ts"
+      ],
+      "@stackmend/prediction-recorder": [
+        "packages/prediction-recorder/src/index.ts"
+      ],
+      "@stackmend/outcome-observer": [
+        "packages/outcome-observer/src/index.ts"
+      ],
+      "@stackmend/delta-reporter": [
+        "packages/delta-reporter/src/index.ts"
+      ],
+      "@stackmend/outcome-learner": [
+        "packages/outcome-learner/src/index.ts"
+      ],
+      "@stackmend/repair-planner": [
+        "packages/repair-planner/src/index.ts"
+      ],
+      "@stackmend/trust-scope-engine": [
+        "packages/trust-scope-engine/src/index.ts"
+      ]
+    },
+    "strict": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "rootDir": "."
+  }
+}

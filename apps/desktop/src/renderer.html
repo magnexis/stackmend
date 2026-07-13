@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StackMend Desktop</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #08141e;
+        --panel: #102331;
+        --panel-2: #163247;
+        --line: #234c63;
+        --text: #f3f7fa;
+        --muted: #9bc7d8;
+        --mint: #5be0b5;
+        --blue: #3fa8d8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(91, 224, 181, 0.16), transparent 30%),
+          linear-gradient(180deg, #08141e 0%, #0d1d29 100%);
+        color: var(--text);
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        min-height: 100vh;
+      }
+
+      .rail {
+        border-right: 1px solid rgba(127, 231, 196, 0.12);
+        padding: 28px 22px;
+        background: rgba(8, 20, 30, 0.76);
+        backdrop-filter: blur(16px);
+      }
+
+      .brand {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      .tagline {
+        margin-top: 10px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .main {
+        padding: 30px;
+      }
+
+      .hero {
+        display: grid;
+        gap: 18px;
+      }
+
+      .card {
+        background: linear-gradient(180deg, rgba(16, 35, 49, 0.94), rgba(10, 22, 31, 0.94));
+        border: 1px solid rgba(127, 231, 196, 0.12);
+        border-radius: 22px;
+        padding: 24px;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
+      }
+
+      .status-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .status-label {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .status-value {
+        margin-top: 8px;
+        font-size: 28px;
+        font-weight: 700;
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      button {
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 18px;
+        font-size: 14px;
+        font-weight: 700;
+        color: #08141e;
+        background: linear-gradient(135deg, var(--mint), #8ef0d2);
+        cursor: pointer;
+      }
+
+      button.secondary {
+        color: var(--text);
+        background: linear-gradient(135deg, rgba(63, 168, 216, 0.22), rgba(35, 76, 99, 0.5));
+        border: 1px solid rgba(127, 231, 196, 0.18);
+      }
+
+      pre {
+        margin: 0;
+        padding: 16px;
+        border-radius: 16px;
+        background: rgba(8, 20, 30, 0.85);
+        border: 1px solid rgba(127, 231, 196, 0.1);
+        color: #cfe8f1;
+        overflow: auto;
+      }
+
+      @media (max-width: 920px) {
+        .shell {
+          grid-template-columns: 1fr;
+        }
+
+        .status-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="rail">
+        <div class="brand">STACKMEND</div>
+        <div class="tagline">Desktop command center for daemon health, repository scans, and system-level maintenance workflows.</div>
+      </aside>
+      <main class="main">
+        <section class="hero">
+          <div class="card">
+            <h1>Desktop Shell</h1>
+            <p>This is the first desktop client shell. It talks to the shared daemon instead of duplicating repair or learning logic.</p>
+            <div class="actions">
+              <button id="refresh">Refresh Daemon Status</button>
+              <button id="copy" class="secondary">Copy Snapshot</button>
+            </div>
+          </div>
+
+          <div class="status-grid">
+            <div class="card">
+              <div class="status-label">State</div>
+              <div class="status-value" id="state">Loading</div>
+            </div>
+            <div class="card">
+              <div class="status-label">Protocol</div>
+              <div class="status-value" id="protocol">-</div>
+            </div>
+            <div class="card">
+              <div class="status-label">Active Projects</div>
+              <div class="status-value" id="projects">-</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="status-label">Daemon Snapshot</div>
+            <pre id="snapshot">Waiting for daemon status...</pre>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const state = document.getElementById("state");
+      const protocol = document.getElementById("protocol");
+      const projects = document.getElementById("projects");
+      const snapshot = document.getElementById("snapshot");
+      const refreshButton = document.getElementById("refresh");
+      const copyButton = document.getElementById("copy");
+
+      async function refresh() {
+        try {
+          const result = await window.stackmendDesktop.getDaemonStatus();
+          state.textContent = result.state;
+          protocol.textContent = result.protocolVersion;
+          projects.textContent = String(result.activeProjects);
+          snapshot.textContent = JSON.stringify(result, null, 2);
+        } catch (error) {
+          state.textContent = "Offline";
+          protocol.textContent = "-";
+          projects.textContent = "-";
+          snapshot.textContent = String(error);
+        }
+      }
+
+      refreshButton.addEventListener("click", refresh);
+      copyButton.addEventListener("click", async () => {
+        await navigator.clipboard.writeText(snapshot.textContent || "");
+      });
+
+      refresh();
+    </script>
+  </body>
+</html>

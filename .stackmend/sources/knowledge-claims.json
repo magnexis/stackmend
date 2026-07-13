@@ -1,0 +1,24 @@
+[
+  {
+    "id": "claim:environment-governance",
+    "title": "Repository depends on coordinated environment governance",
+    "summary": "Environment variables are part of the repository's operational contract and require synchronization across code and configuration.",
+    "scope": "configuration",
+    "sourceId": "source:README-md",
+    "confidence": 0.79,
+    "versionScope": "workspace-current",
+    "evidence": [
+      {
+        "file": "packages\\daemon-client\\src\\index.ts"
+      },
+      {
+        "file": "apps\\daemon\\src\\index.ts"
+      }
+    ],
+    "tags": [
+      "environment",
+      "configuration",
+      "governance"
+    ]
+  }
+]

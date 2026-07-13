@@ -1,0 +1,22 @@
+{
+  "id": "source:package-json",
+  "sourcePath": "package.json",
+  "sourceType": "package_manifest",
+  "publisher": "local_repository",
+  "tier": "canonical",
+  "status": "approved",
+  "trustScore": 0.99,
+  "authorityScore": 0.94,
+  "freshnessScore": 0.99,
+  "canonical": true,
+  "automatedAccessAllowed": true,
+  "trainingUseAllowed": true,
+  "attributionRequired": false,
+  "evidenceCount": 0,
+  "tags": [
+    "package",
+    "build",
+    "local-first",
+    "inspectable"
+  ]
+}

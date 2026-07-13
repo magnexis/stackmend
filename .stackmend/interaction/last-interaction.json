@@ -1,0 +1,37 @@
+{
+  "id": "IX-1783956583289",
+  "type": "repair_modified_by_user",
+  "targetPath": "C:\\Users\\matth\\OneDrive\\Desktop\\company\\STACKMEND",
+  "repositoryFamily": "interactive-feedback",
+  "subsystem": "repair",
+  "defectFamilies": [
+    "repair_feedback"
+  ],
+  "prediction": {
+    "repairStrategy": "RP-DAEMON-001",
+    "confidence": 0.65,
+    "expectedOutcome": "Daemon feedback path prefers base URL centralization."
+  },
+  "outcome": {
+    "action": "modified",
+    "build": "passed",
+    "tests": "passed",
+    "runtimeProbe": "unknown",
+    "summary": "Daemon feedback path prefers base URL centralization."
+  },
+  "learned": [
+    "Repair plan RP-DAEMON-001 was modified",
+    "Preferred final strategy: centralize-base-url"
+  ],
+  "intelligenceChanges": [
+    "1 repository-specific repair preference recorded",
+    "1 correction-weighted feedback event stored"
+  ],
+  "verificationChecks": [
+    "build:passed",
+    "tests:passed",
+    "runtime:unknown",
+    "repair_plan:RP-DAEMON-001"
+  ],
+  "timestamp": "2026-07-13T15:29:43.289Z"
+}

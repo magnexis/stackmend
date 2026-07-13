@@ -1,0 +1,4 @@
+patterns:
+  -
+    id: "rejected-pattern-1"
+    summary: "Express route classification"

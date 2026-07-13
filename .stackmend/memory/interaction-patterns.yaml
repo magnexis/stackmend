@@ -1,0 +1,7 @@
+patterns:
+  -
+    id: "interaction-pattern-1"
+    summary: "Repair plan RP-DAEMON-001 was modified"
+  -
+    id: "interaction-pattern-2"
+    summary: "Preferred final strategy: centralize-base-url"

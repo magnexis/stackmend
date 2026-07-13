@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+apps/**/dist/
+packages/**/dist/
+artifacts/
+coverage/
+*.tsbuildinfo
+
+# Generated packaging assets
+apps/vscode-extension/node_modules/
+apps/vscode-extension/*.vsix
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# STACKMEND generated runtime state
+.stackmend/cache/**
+.stackmend/history/**
+.stackmend/reports/**
+.stackmend/repair-packs/**
+.stackmend/snapshots/**
+.stackmend/repository.db
+.stackmend/memory/*.db
+.stackmend/learning/*.json
+.stackmend/learning/*.jsonl
+.stackmend/learning/*.db
+
+# Keep repository-local scaffolding and documentation
+!.stackmend/
+!.stackmend/config.yaml
+!.stackmend/feature-registry.yaml
+!.stackmend/cache/README.md
+!.stackmend/contracts/README.md
+!.stackmend/history/README.md
+!.stackmend/learning/
+!.stackmend/learning/README.md
+!.stackmend/learning/ingestion-sources.yaml
+!.stackmend/memory/
+!.stackmend/memory/README.md
+!.stackmend/memory/conventions.yaml
+!.stackmend/memory/accepted-patterns.yaml
+!.stackmend/memory/rejected-patterns.yaml
+!.stackmend/memory/false-positives.yaml
+!.stackmend/memory/architecture-rules.yaml
+!.stackmend/plugins/README.md
+!.stackmend/policies/README.md
+!.stackmend/repair-packs/README.md
+!.stackmend/reports/README.md
+!.stackmend/snapshots/README.md

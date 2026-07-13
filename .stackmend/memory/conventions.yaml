@@ -1,0 +1,7 @@
+conventions:
+  -
+    id: "convention:env-governance"
+    title: "Repository requires environment configuration alignment"
+    summary: "Environment variables should stay synchronized across code, examples, and deployment configuration."
+    confidence: "0.81"
+    source: "environment-analyzer"

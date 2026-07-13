@@ -1,0 +1,43 @@
+{
+  "product": "STACKMEND",
+  "version": "0.1.1",
+  "generatedAt": "2026-07-13T18:54:58.395Z",
+  "assets": [
+    {
+      "name": "stackmend-0.1.2.vsix",
+      "type": "vsix",
+      "target": "vscode",
+      "requirements": [
+        "VS Code 1.90+",
+        "Workspace trust for repair workflows"
+      ]
+    },
+    {
+      "name": "stackmend-cli-v0.1.1-windows-x64.zip",
+      "type": "zip",
+      "target": "cli",
+      "requirements": [
+        "Windows",
+        "Node.js 20+"
+      ]
+    },
+    {
+      "name": "stackmend-desktop-v0.1.1-windows-x64.zip",
+      "type": "zip",
+      "target": "desktop",
+      "requirements": [
+        "Windows",
+        "Node.js 20+"
+      ]
+    },
+    {
+      "name": "stackmend-services-v0.1.1-windows-x64.zip",
+      "type": "zip",
+      "target": "services",
+      "requirements": [
+        "Windows",
+        "Node.js 20+"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "source:-stackmend-config-yaml",
+  "sourcePath": ".stackmend/config.yaml",
+  "sourceType": "stackmend_config",
+  "publisher": "local_repository",
+  "tier": "canonical",
+  "status": "approved",
+  "trustScore": 0.99,
+  "authorityScore": 0.97,
+  "freshnessScore": 0.99,
+  "canonical": true,
+  "automatedAccessAllowed": true,
+  "trainingUseAllowed": true,
+  "attributionRequired": false,
+  "evidenceCount": 5,
+  "tags": [
+    "stackmend",
+    "policy",
+    "local-first",
+    "inspectable"
+  ]
+}

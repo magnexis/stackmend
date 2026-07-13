@@ -1,0 +1,15 @@
+[
+  {
+    "id": "trial:claim:environment-governance",
+    "claimId": "claim:environment-governance",
+    "sourceId": "source:README-md",
+    "status": "confirmed",
+    "confidence": 1,
+    "summary": "Repository depends on coordinated environment governance trial completed with 3/3 supporting checks.",
+    "checks": [
+      "pass:source-approved",
+      "pass:environment-entities-present",
+      "pass:configuration-fracture-evidence"
+    ]
+  }
+]

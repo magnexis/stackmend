@@ -1,0 +1,17 @@
+{
+  "name": "@stackmend/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "stackmend": "dist/apps/cli/src/index.js"
+  },
+  "main": "dist/apps/cli/src/index.js",
+  "types": "dist/apps/cli/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "if exist dist rmdir /s /q dist"
+  },
+  "dependencies": {
+    "@stackmend/daemon-client": "0.1.0"
+  }
+}

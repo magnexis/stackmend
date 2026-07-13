@@ -1,0 +1,8 @@
+*
+!dist/**
+!package.json
+!README.md
+!LICENSE.txt
+!media/**
+!node_modules/@stackmend/**
+!node_modules/yaml/**

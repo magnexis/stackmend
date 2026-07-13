@@ -1,0 +1,28 @@
+{
+  "name": "stackmend",
+  "description": "STACKMEND monorepo for repository intelligence, repair workflows, daemon runtime, and VS Code Marketplace delivery.",
+  "version": "0.1.1",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "build:extension": "npm run build --workspace stackmend-vscode-extension",
+    "clean": "npm run clean --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "package:extension": "npm run build && npm run package:vsix --workspace stackmend-vscode-extension",
+    "prepare:github-release": "node ./scripts/prepare-github-release.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@vscode/vsce": "^3.9.2",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

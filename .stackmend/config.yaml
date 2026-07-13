@@ -1,0 +1,218 @@
+version: 0.1
+mode: local
+repositoryKnowledgeEngine:
+  enabled: true
+  storage: repository.db
+  incrementalIndexing: true
+  backgroundObservation: true
+learning:
+  enabled: true
+  persistentCorpus: true
+  storagePath: learning/
+  learnFromCode: true
+  learnFromRepairOutcomes: true
+  learnFromStructuredExternalSources: true
+  learnFromGitHistory: true
+  learnFromTests: true
+  learnFromCiAndDeployments: true
+  memoryScopes:
+    repository: true
+    workspace: true
+    developer: true
+    globalSanitized: true
+  patternPromotion:
+    enabled: true
+    minimumObservations: 3
+    benchmarkValidationRequired: true
+  knowledgeDecay:
+    enabled: true
+    contradictionResolution: true
+  autonomousIngestion:
+    enabled: true
+    mode: bounded
+    requireSourceRegistry: true
+    allowOpenApi: true
+    allowCiLogs: true
+    allowDocs: true
+    allowDependencyMetadata: true
+    allowArbitraryWebScraping: false
+memory:
+  enabled: true
+  storagePath: memory/
+  localFirst: true
+  secretsRedactionRequired: true
+  inspectable: true
+  deletable: true
+academy:
+  enabled: true
+  daemon: evolution-daemon
+  autonomousTraining: true
+  attemptBeforeReference: true
+  excludedDomains:
+    - visual_design
+    - chart_generation
+    - map_rendering
+    - diagram_generation
+    - canvas_systems
+    - graphical_layout_evaluation
+scholar:
+  enabled: true
+  approvedSourcesOnly: true
+  requireLicenseVerification: true
+  requirePermissionVerification: true
+  allowOfficialApis: true
+  allowOfficialClis: true
+  allowPublicRepositories: true
+  allowPermissiveDatasets: true
+  allowArbitraryScraping: false
+beacon:
+  enabled: true
+  tagline: "Find knowledge. Prove it. Learn it."
+  discovery:
+    autonomousSourceDiscovery: true
+    missionDriven: true
+    useSearchQueries: true
+    followSeedChains: true
+    approvedSeedSourcesOnly: true
+  trust:
+    claimLevelVerification: true
+    canonicalityRequiredForDirectPromotion: true
+    independentCorroborationRequiredForNonCanonical: true
+    executableVerificationPreferred: true
+    versionScopedKnowledgeRequired: true
+  compliance:
+    robotsCheckRequired: true
+    termsCheckRequired: true
+    licenseCheckRequired: true
+    permissionCheckRequired: true
+    attributionTrackingRequired: true
+    metadataOnlyOnUnclearPermission: true
+  defense:
+    instructionStrippingRequired: true
+    secretScanningRequired: true
+    malwareScanningRequired: true
+    importedContentSandboxOnly: true
+  quarantine:
+    enabled: true
+    suspendOnOwnershipChange: true
+    suspendOnLicenseChange: true
+    suspendOnCompromiseSignals: true
+    retainLearnedTechniquesForRevalidation: true
+  revalidation:
+    continuous: true
+    freshnessTracking: true
+    sourceDriftDetection: true
+    claimRetestingRequired: true
+  storage:
+    sourceRegistryPath: sources/
+    trustRecordsPath: sources/trust/
+    lineagePath: learning/lineage/
+evolution:
+  enabled: true
+  approvalLevel: research
+  stableCore:
+    immutableWithoutPromotion: true
+    productionStorageIsolationRequired: true
+  laboratory:
+    enabled: true
+    daemon: laboratory-daemon
+    sandboxRequired: true
+    networkDefault: disabled
+    productionCredentialAccess: forbidden
+    productionMemoryAccess: forbidden
+  genome:
+    enabled: true
+    storagePath: evolution/genome/
+    compareOnEveryCandidate: true
+  forge:
+    enabled: true
+    mendspecPreferred: true
+    rawSourceMutationRestricted: true
+    mutationFamilies:
+      - threshold_tuning
+      - ast_rule_refinement
+      - heuristic_specialization
+      - cache_optimization
+      - ranking_weight_adjustment
+      - false_positive_suppression
+  trials:
+    enabled: true
+    hiddenBenchmarksRequired: true
+    adversarialTestsRequired: true
+    longHorizonTestsRequired: true
+    performanceBudgetsRequired: true
+  promotion:
+    candidateCompetitionRequired: true
+    constitutionChecksRequired: true
+    canaryDeploymentRequired: true
+    rollbackReadyRequired: true
+    maximumFalsePositiveIncrease: 0.005
+    maximumMemoryIncreaseRatio: 0.10
+    minimumUnseenImprovement: 0.01
+  memory:
+    enabled: true
+    path: evolution/history/
+    retainFailedCandidates: true
+    retainConstitutionViolations: true
+  capabilityGaps:
+    enabled: true
+    path: evolution/capability-gaps/
+  constitution:
+    enabled: true
+    path: policies/mend-constitution.yaml
+interactionLearning:
+  enabled: true
+  noZeroLearningInteractions: true
+  correctionWeight: high
+  oneMistakeRule: true
+  immediateLearning:
+    enabled: true
+    scopes:
+      - file
+      - subsystem
+      - repository
+      - developer
+  consolidatedLearning:
+    enabled: true
+    minimumObservations: 3
+    hiddenEvaluationRequiredForGlobalPromotion: true
+  predictionRecording:
+    requiredBeforeOutcomeComparison: true
+  intelligenceDelta:
+    enabled: true
+    gradientTracking: true
+    explainableReportsRequired: true
+  interactionReplay:
+    enabled: true
+    sanitizeRequired: true
+    regressionFixtureGeneration: true
+  competence:
+    enabled: true
+    repeatedMistakeTracking: true
+    calibrationMonitoring: true
+    zeroLearningAlerts: true
+  safeguards:
+    scopeValidationRequired: true
+    contradictionChecksRequired: true
+    securityValidationRequired: true
+    poisoningDefenseRequired: true
+    quarantineSuspiciousUpdates: true
+  storage:
+    interactionsPath: interaction/
+    deltasPath: interaction/deltas/
+    replayPath: interaction/replay/
+    competencePath: interaction/competence/
+evolutionArena:
+  enabled: true
+  networkDefault: disabled
+  ephemeralFilesystem: true
+  readOnlyFixtures: true
+  cpuLimits: true
+  memoryLimits: true
+  timeoutEnforced: true
+  dependencyAllowlists: true
+  hostExecutionForbidden: true
+safeRepair:
+  previewRequired: true
+  simulationRequired: true
+  verificationRequired: true

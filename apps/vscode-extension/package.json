@@ -1,0 +1,104 @@
+{
+  "name": "stackmend-vscode-extension",
+  "displayName": "STACKMEND",
+  "description": "Repository intelligence for diagnosing integration fractures, tracking repair outcomes, and learning from real software maintenance workflows.",
+  "version": "0.1.2",
+  "publisher": "magnificent-language",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "keywords": [
+    "stackmend",
+    "software-maintenance",
+    "repository-intelligence",
+    "integration-testing",
+    "repair-automation",
+    "code-quality",
+    "developer-tools"
+  ],
+  "categories": [
+    "Other",
+    "Testing",
+    "Linters"
+  ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "STACKMEND can inspect repository structure in untrusted workspaces, but repair workflows and daemon-backed features require workspace trust."
+    }
+  },
+  "galleryBanner": {
+    "color": "#08141E",
+    "theme": "dark"
+  },
+  "markdown": "github",
+  "activationEvents": [
+    "onCommand:stackmend.scanProject",
+    "onCommand:stackmend.generateProjectTruth",
+    "onCommand:stackmend.markRepairSuccessful",
+    "onCommand:stackmend.markRepairIncorrect",
+    "onCommand:stackmend.correctDiagnosis"
+  ],
+  "main": "./dist/apps/vscode-extension/src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "stackmend.scanProject",
+        "title": "StackMend: Scan Project",
+        "category": "StackMend"
+      },
+      {
+        "command": "stackmend.generateProjectTruth",
+        "title": "StackMend: Generate Project Truth",
+        "category": "StackMend"
+      },
+      {
+        "command": "stackmend.startDaemon",
+        "title": "StackMend: Start Daemon",
+        "category": "StackMend"
+      },
+      {
+        "command": "stackmend.stopDaemon",
+        "title": "StackMend: Stop Daemon",
+        "category": "StackMend"
+      },
+      {
+        "command": "stackmend.restartDaemon",
+        "title": "StackMend: Restart Daemon",
+        "category": "StackMend"
+      },
+      {
+        "command": "stackmend.markRepairSuccessful",
+        "title": "StackMend: Mark Repair Successful",
+        "category": "StackMend"
+      },
+      {
+        "command": "stackmend.markRepairIncorrect",
+        "title": "StackMend: Mark Repair Incorrect",
+        "category": "StackMend"
+      },
+      {
+        "command": "stackmend.correctDiagnosis",
+        "title": "StackMend: Correct This Diagnosis",
+        "category": "StackMend"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "if exist dist rmdir /s /q dist",
+    "prepare:vsix": "node ./scripts/prepare-vsix.mjs",
+    "package:vsix": "node ./scripts/package-vsix.mjs"
+  },
+  "dependencies": {
+    "@stackmend/daemon-client": "0.1.0",
+    "yaml": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.90.0"
+  }
+}

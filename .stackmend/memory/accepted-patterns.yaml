@@ -1,0 +1,24 @@
+patterns:
+  -
+    id: "pattern:SM-ENV-001"
+    scope: "repository"
+    category: "repair"
+    title: "Missing environment variable declaration for STACKMEND_HOME"
+    summary: "STACKMEND_HOME is referenced in code or documentation but not declared in an environment file."
+    confidence: "0.84"
+    source: "fracture-engine"
+    tags:
+      - "environment"
+      - "high"
+  -
+    id: "pattern:claim:environment-governance"
+    scope: "repository"
+    category: "architecture"
+    title: "Repository depends on coordinated environment governance"
+    summary: "Environment variables are part of the repository's operational contract and require synchronization across code and configuration."
+    confidence: "0.79"
+    source: "source:README-md"
+    tags:
+      - "environment"
+      - "configuration"
+      - "governance"

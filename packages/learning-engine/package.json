@@ -1,0 +1,14 @@
+{
+  "name": "@stackmend/learning-engine",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/packages/learning-engine/src/index.js",
+  "types": "dist/packages/learning-engine/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "if exist dist rmdir /s /q dist"
+  },
+  "dependencies": {
+    "@stackmend/shared": "0.1.0"
+  }
+}

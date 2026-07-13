@@ -1,0 +1,14 @@
+{
+  "name": "@stackmend/beacon-daemon",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "stackmend-beacon-daemon": "dist/apps/beacon-daemon/src/index.js"
+  },
+  "main": "dist/apps/beacon-daemon/src/index.js",
+  "types": "dist/apps/beacon-daemon/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "if exist dist rmdir /s /q dist"
+  }
+}
