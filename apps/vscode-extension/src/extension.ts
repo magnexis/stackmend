@@ -1,10 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import * as vscode from "vscode";
-import { stringify } from "yaml";
-import { StackMendDaemonClient } from "@stackmend/daemon-client";
-import { FeedbackRequest } from "@stackmend/protocol";
-import { Fracture, ScanSummary } from "@stackmend/shared";
+import { FeedbackRequest, ScanSummary, StackMendDaemonClient } from "./daemonClient";
 
 const client = new StackMendDaemonClient({
   clientId: "stackmend-vscode",
@@ -71,19 +68,7 @@ export function activate(context: vscode.ExtensionContext): void {
       fs.mkdirSync(path.dirname(truthPath), { recursive: true });
       fs.writeFileSync(
         truthPath,
-        stringify({
-          generatedAt: new Date().toISOString(),
-          completionIntegrityScore: scoreSummary(summary),
-          features: {
-            environment_configuration: {
-              status: summary.fractures.length === 0 ? "working" : "broken",
-              fractureCount: summary.fractures.length,
-              evidence: summary.fractures.flatMap((fracture) =>
-                fracture.evidence.map((entry) => entry.file),
-              ),
-            },
-          },
-        }),
+        toProjectTruthYaml(summary),
       );
 
       const doc = await vscode.workspace.openTextDocument(truthPath);
@@ -260,4 +245,33 @@ function buildMarkdownReport(summary: ScanSummary): string {
 
 function scoreSummary(summary: ScanSummary): number {
   return Math.max(0, 100 - summary.fractures.length * 12);
+}
+
+function toProjectTruthYaml(summary: ScanSummary): string {
+  const evidence = summary.fractures.flatMap((fracture) =>
+    fracture.evidence.map((entry) => entry.file),
+  );
+  const lines = [
+    `generatedAt: ${new Date().toISOString()}`,
+    `completionIntegrityScore: ${scoreSummary(summary)}`,
+    "features:",
+    "  environment_configuration:",
+    `    status: ${summary.fractures.length === 0 ? "working" : "broken"}`,
+    `    fractureCount: ${summary.fractures.length}`,
+    "    evidence:",
+  ];
+
+  if (evidence.length === 0) {
+    lines.push("      []");
+  } else {
+    for (const file of evidence) {
+      lines.push(`      - ${quoteYaml(file)}`);
+    }
+  }
+
+  return `${lines.join("\n")}\n`;
+}
+
+function quoteYaml(value: string): string {
+  return JSON.stringify(value);
 }

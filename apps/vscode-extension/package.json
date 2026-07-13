@@ -39,6 +39,17 @@
     "color": "#08141E",
     "theme": "dark"
   },
+  "vsce": {
+    "dependencies": false,
+    "yarn": false
+  },
+  "files": [
+    "dist/**",
+    "media/**",
+    "README.md",
+    "LICENSE.txt",
+    "package.json"
+  ],
   "markdown": "github",
   "activationEvents": [
     "onCommand:stackmend.scanProject",
@@ -93,14 +104,10 @@
     ]
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "clean": "if exist dist rmdir /s /q dist",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "clean": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\"",
     "prepare:vsix": "node ./scripts/prepare-vsix.mjs",
     "package:vsix": "node ./scripts/package-vsix.mjs"
-  },
-  "dependencies": {
-    "@stackmend/daemon-client": "0.1.2",
-    "yaml": "^2.5.0"
   },
   "devDependencies": {
     "@types/vscode": "^1.90.0"

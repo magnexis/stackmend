@@ -1,0 +1,76 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.13.0
+2 info using node@v24.16.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 info config found workspace root at C:\Users\matth\OneDrive\Desktop\company\STACKMEND
+5 silly config load:file:C:\Users\matth\OneDrive\Desktop\company\STACKMEND\.npmrc
+6 silly config load:file:C:\Users\matth\.npmrc
+7 silly config load:file:C:\Users\matth\AppData\Roaming\npm\etc\npmrc
+8 verbose title npm pack
+9 verbose argv "pack" "--dry-run"
+10 verbose logfile logs-max:10 dir:C:\Users\matth\OneDrive\Desktop\company\STACKMEND\apps\vscode-extension\.tmp\npm-cache\_logs\2026-07-13T19_52_06_202Z-
+11 verbose logfile C:\Users\matth\OneDrive\Desktop\company\STACKMEND\apps\vscode-extension\.tmp\npm-cache\_logs\2026-07-13T19_52_06_202Z-debug-0.log
+12 silly logfile done cleaning log files
+13 http fetch GET https://registry.npmjs.org/npm attempt 1 failed with EACCES
+14 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+15 notice
+16 notice 📦  stackmend-vscode-extension@0.1.2
+17 notice Tarball Contents
+18 notice 1.1kB LICENSE.txt
+18 notice 860B README.md
+18 notice 152B dist/apps/vscode-extension/src/extension.d.ts
+18 notice 11.1kB dist/apps/vscode-extension/src/extension.js
+18 notice 399B dist/packages/claim-trial/src/index.d.ts
+18 notice 2.6kB dist/packages/claim-trial/src/index.js
+18 notice 443B dist/packages/compliance-engine/src/index.d.ts
+18 notice 3.0kB dist/packages/compliance-engine/src/index.js
+18 notice 1.9kB dist/packages/daemon-client/src/index.d.ts
+18 notice 8.7kB dist/packages/daemon-client/src/index.js
+18 notice 581B dist/packages/delta-reporter/src/index.d.ts
+18 notice 2.6kB dist/packages/delta-reporter/src/index.js
+18 notice 123B dist/packages/environment-analyzer/src/index.d.ts
+18 notice 5.6kB dist/packages/environment-analyzer/src/index.js
+18 notice 725B dist/packages/event-capture/src/index.d.ts
+18 notice 7.6kB dist/packages/event-capture/src/index.js
+18 notice 778B dist/packages/fracture-engine/src/index.d.ts
+18 notice 10.8kB dist/packages/fracture-engine/src/index.js
+18 notice 629B dist/packages/learning-engine/src/index.d.ts
+18 notice 3.0kB dist/packages/learning-engine/src/index.js
+18 notice 819B dist/packages/memory-engine/src/index.d.ts
+18 notice 5.2kB dist/packages/memory-engine/src/index.js
+18 notice 460B dist/packages/outcome-learner/src/index.d.ts
+18 notice 2.3kB dist/packages/outcome-learner/src/index.js
+18 notice 173B dist/packages/outcome-observer/src/index.d.ts
+18 notice 932B dist/packages/outcome-observer/src/index.js
+18 notice 182B dist/packages/prediction-recorder/src/index.d.ts
+18 notice 788B dist/packages/prediction-recorder/src/index.js
+18 notice 1.8kB dist/packages/protocol/src/index.d.ts
+18 notice 157B dist/packages/protocol/src/index.js
+18 notice 403B dist/packages/repair-planner/src/index.d.ts
+18 notice 4.4kB dist/packages/repair-planner/src/index.js
+18 notice 346B dist/packages/repository-intelligence/src/index.d.ts
+18 notice 3.9kB dist/packages/repository-intelligence/src/index.js
+18 notice 612B dist/packages/route-analyzer/src/index.d.ts
+18 notice 16.1kB dist/packages/route-analyzer/src/index.js
+18 notice 7.1kB dist/packages/shared/src/index.d.ts
+18 notice 11B dist/packages/shared/src/index.js
+18 notice 549B dist/packages/trust-scope-engine/src/index.d.ts
+18 notice 3.8kB dist/packages/trust-scope-engine/src/index.js
+18 notice 1.3kB media/stackmend-logo.svg
+18 notice 3.0kB package.json
+19 notice Tarball Details
+20 notice name: stackmend-vscode-extension
+21 notice version: 0.1.2
+22 notice filename: stackmend-vscode-extension-0.1.2.tgz
+23 notice package size: 26.5 kB
+24 notice unpacked size: 117.0 kB
+25 notice shasum: 47a206cce827d614a813e57ddf030f60728ac991
+26 notice integrity: sha512-iLDEtJuRQ3W3W[...]4KFP0wA9dp1xg==
+27 notice total files: 42
+28 notice
+29 verbose cwd C:\Users\matth\OneDrive\Desktop\company\STACKMEND\apps\vscode-extension
+30 verbose os Windows_NT 10.0.26200
+31 verbose node v24.16.0
+32 verbose npm  v11.13.0
+33 verbose exit 0
+34 info ok
