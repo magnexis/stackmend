@@ -555,6 +555,10 @@ Very few tools are structured around:
 
 That combination is the real product moat.
 
+## VS Code Extension
+
+[Visit Marketplace](https://marketplace.visualstudio.com/items?itemName=magnificent-language.stackmend-vscode-extension)
+
 ## Near-Term Priorities
 
 - persist repository intelligence into `.stackmend/`
